@@ -25,21 +25,22 @@ const res = require('express/lib/response')
 
 const app = express()
 
-const port = 9000
+const port = 9000;
 
 
 
 app.get('/', (req, res) => {
-  res.send(`<h1>Hello World! It's Codecool!</h1>
-  <h2>Hello</h2>`)
+  
+    res.sendFile(path.join(`${__dirname}/../frontend/welcome.html`))
 });
 
 
 app.get('/frontend', (req, res) => {
 
-	res.sendFile(path.join(`${__dirname}/../frontend/index.html`))
+	res.sendFile(path.join(`${__dirname}/../frontend/students.html`))
 
-})
+});
+
 app.use('/api', express.static(`${__dirname}/../frontend/api`))
 
 /*app.get('/frontend', (req, res) => {
