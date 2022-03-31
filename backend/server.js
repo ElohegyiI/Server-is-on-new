@@ -57,6 +57,6 @@ app.use('/frontend', express.static('frontend'))
 
 app.listen(port, () => {
 
-  console.log(`http://127.0.0.1:${port}/frontend/welcome`)
+  console.log(`http://127.0.0.1:${port}/frontend/welcome.html`)
 
 })
