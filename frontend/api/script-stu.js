@@ -1,7 +1,7 @@
 
 
 
-
+function loadEvent() {
 
     fetch("/api/students.json")
 
@@ -14,9 +14,13 @@
 
                     document.getElementById("root").insertAdjacentHTML  ('beforeend', `
                     <div class="cards">
-                        <h2>${student.id}</h2>
-                        <p>${student.name}</p>
+                        <h3>${student.id}</h3>
+                        <h4>${student.name}</h4>
                         <p>${student.status}</p>                
                     `)
                 }
             });
+
+    
+
+}window.addEventListener('load', loadEvent)
