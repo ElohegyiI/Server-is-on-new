@@ -34,9 +34,17 @@ app.get('/', (req, res) => {
   <h2>Hello</h2>`)
 });
 
+
 app.get('/frontend', (req, res) => {
+
+	res.sendFile(path.join(`${__dirname}/../frontend/index.html`))
+
+})
+app.use('/api', express.static(`${__dirname}/../frontend/api`))
+
+/*app.get('/frontend', (req, res) => {
   res.send(`<h2>Hello</h2>`)
-});
+});*/
 
 /*app.get('/backend/data', (req, res) => {
   res.send(`<p>Data</p>`)
