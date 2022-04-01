@@ -27,21 +27,46 @@ const app = express()
 
 const port = 9000;
 
-
+const students = require('./students.json')
 
 app.get('/', (req, res) => {
   
-    res.sendFile(path.join(`${__dirname}/../frontend/welcome.html`))
+    res.send(`<h1>Hello World! It's Codecool</h1>`)
 });
 
+app.get('/api/students', (req, res) => {
+  
+  res.send(students)
+});
 
-app.get('/frontend', (req, res) => {
+app.get('/api/students/*', (req, res) => {
+  //console.log(req.params[0])
+  res.send(students.find(d => d.id==req.params[0]))
+});
+
+app.get('/api/status/active', (req, res) => {
+  //console.log(req.params[0])
+  res.send(students.filter(d => d.status==true))
+});
+
+app.get('/api/status/finished', (req, res) => {
+  //console.log(req.params[0])
+  res.send(students.filter(d => d.status==false))
+});
+
+app.post('/api/students', (req, res) => {
+  console.log(req.query['name'])
+
+  res.status(200).json({msg:'hiba van'})
+});
+
+/*app.get('/frontend', (req, res) => {
 
 	res.sendFile(path.join(`${__dirname}/../frontend/students.html`))
 
 });
 
-app.use('/api', express.static(`${__dirname}/../frontend/api`))
+app.use('/api', express.static(`${__dirname}/../frontend/api`))*/
 
 /*app.get('/frontend', (req, res) => {
   res.send(`<h2>Hello</h2>`)
@@ -57,6 +82,6 @@ app.use('/frontend', express.static('frontend'))
 
 app.listen(port, () => {
 
-  console.log(`http://127.0.0.1:${port}/frontend/welcome.html`)
+  console.log(`http://127.0.0.1:${port}`)
 
 })
