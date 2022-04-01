@@ -55,8 +55,8 @@ app.get('/api/status/finished', (req, res) => {
 });
 
 app.post('/api/students', (req, res) => {
-  console.log(req.query['name'])
-
+  console.log(req.query['name', 'status'])
+  //res.writeFile('students.json')
   res.status(200).json({msg:'hiba van'})
 });
 
