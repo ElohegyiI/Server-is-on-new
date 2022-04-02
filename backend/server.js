@@ -20,20 +20,20 @@ console.log("http://127.0.0.1:9000")
 
 
 //import { express } from 'express'
-const express = require('express')
+const express = require('express');
 
 //const fetch = require("node-fetch")
 
 //import { res } from 'express/lib/response.js'
-const res = require('express/lib/response')
+const res = require('express/lib/response');
 
 //import { students } from './students.json' assert { type: 'json' };
 
-const app = express()
+const app = express();
 
 const port = 9000;
 
-const students = require('./students.json')
+const students = require('./students.json');
 
 app.get('/', (req, res) => {
   
@@ -61,11 +61,13 @@ app.get('/api/status/finished', (req, res) => {
 });
 
 app.post('/api/students', (req, res) => {
-  console.log(req.query['name', 'status'])
+  console.log(req.query['name'])
+  console.log(req.query['status'])
 
-  //res.writeFile('students.json', "name: " + "status: ")
+  res.writeFile('students.json', "name: " + "status: ")
   //console.log(['name'])
-  res.status(200).json({msg:'hiba van'})
+
+  res.status(200).json({msg:'Faszom beleverem'})
 });
 
 /*app.get('/frontend', (req, res) => {
