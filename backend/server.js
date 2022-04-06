@@ -60,15 +60,49 @@ app.get('/api/status/finished', (req, res) => {
   res.send(students.filter(d => d.status==false))
 });
 
-app.post('/api/students', (req, res) => {
+app.post('/api/students/name', (req, res) => {
+
+
   console.log(req.query['name'])
   console.log(req.query['status'])
 
-  res.writeFile('students.json', "name: " + "status: ")
+  fs.readFile(`./students.json`, (error, data) => {
+
+    if (error) {
+
+        console.log(error);
+        
+        res.send("Error reading users file");
+
+    } else {
+
+        const users = JSON.parse(data);
+
+        console.log(req.body)
+        users.push(req.body);
+
+        fs.writeFile(`./students.json`, JSON.stringify(users), 
+
+        error => {
+
+            if (error) {
+                console.log(error);
+                res.send("Error writing users file");
+            }
+        })
+
+        res.send(req.body);
+    }
+
+  })
+
+})
+
+  /*res.writeFile('students.json', "name: " + "status: ")
   //console.log(['name'])
 
   res.status(200).json({msg:'Faszom beleverem'})
-});
+});*/
 
 /*app.get('/frontend', (req, res) => {
 
@@ -87,8 +121,6 @@ app.use('/api', express.static(`${__dirname}/../frontend/api`))*/
 });*/
 
 app.use('/frontend', express.static('frontend'))
-
-
 
 app.listen(port, () => {
 
